@@ -1,0 +1,15 @@
+
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{roomType.type}}</mat-card-title>
+    <mat-card-subtitle>quantity: {{roomType.quantity}}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src="{{roomType.image}}" width="360" height="260"alt="Photo of a room">
+  <hr>
+  <mat-card-actions>
+   <a [routerLink]="['/room-type-detail', roomType.type]"><button mat-button color="primary">EDIT</button></a>
+    <button mat-button (click)="deleteRoomType(roomType.type)">DELETE</button>
+  </mat-card-actions>
+</mat-card>
+

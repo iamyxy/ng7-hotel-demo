@@ -1,0 +1,64 @@
+<main style="margin-top: 10px;">
+<mat-card class="container" fxFlex.gt-sm="98%" fxFlexOffset.gt-sm="1%">
+  <mat-card-title>Dashboard</mat-card-title>
+<div>
+  <div class="left">
+    <div style="display: block; width: 500px; margin-top: 15px;">
+      <canvas baseChart
+              [data]="doughnutChartData"
+              [labels]="doughnutChartLabels"
+              [chartType]="doughnutChartType"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)">
+      </canvas>
+    </div>
+    <div>
+      <h2>{{bookedRate}}%</h2>
+    </div>
+  </div>
+  <div class="right">
+    <div class="row">
+      <div class="col-md-6">
+        <div style="display: block;">
+          <canvas baseChart width="600" height="300"
+                  [datasets]="lineChartData"
+                  [labels]="lineChartLabels"
+                  [options]="lineChartOptions"
+                  [colors]="lineChartColors"
+                  [legend]="lineChartLegend"
+                  [chartType]="lineChartType"
+                  (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"></canvas>
+        </div>
+      </div>
+
+      <div class="col-md-6" style="margin-bottom: 10px">
+        <table class="table table-responsive table-condensed">
+          <tr>
+            <th *ngFor="let label of lineChartLabels">{{label}}</th>
+          </tr>
+          <tr *ngFor="let d of lineChartData">
+            <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
+          </tr>
+        </table>
+        <form  style="width: 200px; margin: 0 auto;" fxLayout="column" ngForm #percent="ngForm" (ngSubmit)="onSubmit(percent.value); percent.reset()">
+          <mat-form-field>
+            <mat-select placeholder="Day Select" ngModel name="day">
+              <mat-option *ngFor="let l of lineChartLabels" [value]="l" >
+                {{l}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <input type="text" matInput placeholder="Percent Booked" ngModel name="percent" #u="ngModel" >
+          </mat-form-field>
+          <button type="submit" mat-raised-button color="primary" style="width: 40px;">Save</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+</mat-card>
+</main>

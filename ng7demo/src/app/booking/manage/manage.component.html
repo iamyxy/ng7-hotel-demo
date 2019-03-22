@@ -1,0 +1,53 @@
+  <form fxLayout="column" ngForm #booking="ngForm" (ngSubmit)="onSubmit(booking.value); booking.reset()">
+    <mat-form-field>
+      <input type="text" matInput placeholder="Booking ID" disabled ngModel name="booking_id" #u="ngModel" [ngModel]="rowData.booking_id" >
+    </mat-form-field>
+    <!--<mat-form-field>-->
+      <!--<input type="text" matInput placeholder="In Date" ngModel name="in_date" [ngModel]="rowData.in_date">-->
+    <!--</mat-form-field>-->
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Check In Date" ngModel name="in_date" [ngModel]="rowData.in_date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <!--<mat-form-field>-->
+      <!--<input type="text" matInput placeholder="Check Out Date" ngModel name="out_date" [ngModel]="rowData.out_date">-->
+    <!--</mat-form-field>-->
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker2" placeholder="Check Out Date" ngModel name="out_date" [ngModel]="rowData.out_date">
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <input type="text" matInput placeholder="Status" ngModel name="status" [ngModel]="rowData.status">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="text" matInput placeholder="Name" ngModel name="customer_name" [ngModel]="rowData.customer_name">
+    </mat-form-field>
+    <!--<mat-form-field>-->
+      <!--<input type="text" matInput placeholder="Room" ngModel name="room" [ngModel]="rowData.room">-->
+    <!--</mat-form-field>-->
+
+    <mat-form-field>
+      <input type="text" matInput placeholder="Room Type" ngModel name="roomtype" [ngModel]="rowData.room_type">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="Room" ngModel name="room">
+        <mat-option *ngFor="let r of _roomList" [value]="r.room_id" >
+          {{r.room_id}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <input type="text" matInput placeholder="Member" ngModel name="member" [ngModel]="rowData.member_id">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="text" matInput placeholder="Personal ID" ngModel name="personal_id" [ngModel]="rowData.personal_id">
+    </mat-form-field>
+    <div>
+      <button type="submit" mat-raised-button color="primary">Confirm</button>
+      <a mat-raised-button (click)="onDecline()" color="warn" style="margin-left: 10px;">Decline</a>
+      <a mat-raised-button  (click)="booking.reset()" style="margin-left: 10px;">Clean</a>
+    </div>
+  </form>
+

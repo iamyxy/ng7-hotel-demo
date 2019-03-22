@@ -1,0 +1,8 @@
+<main class="rooms-container">
+
+<app-room-type-overview *ngFor="let r of roomTypes" [roomType] = 'r' (delete)="deleteRoomType($event)"></app-room-type-overview>
+
+  <a routerLink="/room-type-detail"><button mat-stroked-button color="primary">Add New</button></a>
+
+
+</main>

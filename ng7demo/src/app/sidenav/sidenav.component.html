@@ -1,0 +1,43 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="!(isHandset$ | async)">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list class="list">
+      <a mat-list-item routerLink="/dashboard">Dashboard</a>
+      <a mat-list-item routerLink="/booking">Booking</a>
+      <a mat-list-item routerLink="/record">Record</a>
+      <a mat-list-item routerLink="/room-management">Room Management</a>
+      <a mat-list-item routerLink="/room-type">Room Type</a>
+      <a mat-list-item routerLink="/member">Members</a>
+      <span class="logout" *ngIf="authService.user; else login">
+        <a mat-list-item (click)="logout()">Logout</a>
+      </span>
+      <ng-template #login>
+        <a  class="logout" mat-list-item routerLink="/login">Login</a>
+      </ng-template>
+
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>Hotel Internal Management System</span>
+      <!--<span class="logout" *ngIf="authService.user; else login">-->
+        <!--<a (click)="logout()">Logout</a>-->
+      <!--</span>-->
+      <!--<ng-template #login>-->
+        <!--<a mat-icon-button routerLink="/login">Login</a>-->
+      <!--</ng-template>-->
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

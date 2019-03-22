@@ -1,0 +1,32 @@
+<div fxLayout fxLayoutAlign="center" style="margin: 50px 50px;">
+  <mat-card fxLayout="column" fxFlex="1 1 50%" fxFlex.lt-sm="1 1 auto">
+    <mat-card-title>Register</mat-card-title>
+    <form fxLayout="column" [formGroup]="registerFormGroup" (ngSubmit)="submit(registerFormGroup.value)">
+      <mat-form-field>
+        <mat-placeholder>Username</mat-placeholder>
+        <!-- 在registerFormGroup对象里面找username-->
+        <input type="text" matInput formControlName="username">
+        <!-- for here registerFormGroup is a class, get() is its method inside-->
+        <mat-error *ngIf="registerFormGroup.get('username').errors && registerFormGroup.get('username').errors.required">Username can't be empty.</mat-error>
+        <mat-error *ngIf="registerFormGroup.get('username').errors && registerFormGroup.get('username').errors.minlength">Username can't be less than 4 characters.</mat-error>
+
+      </mat-form-field>
+      <div fxLayout="column" formGroupName="passwordGroup">
+        <mat-form-field>
+          <mat-placeholder>Password</mat-placeholder>
+          <input type="password" matInput formControlName="password">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-placeholder>Confirm Password</mat-placeholder>
+          <input type="password" matInput formControlName="confirm_password">
+        </mat-form-field>
+        <mat-error *ngIf="registerFormGroup.get('passwordGroup').errors">
+          password are not match!
+        </mat-error>
+      </div>
+      <p>
+        <button type="submit" mat-raised-button color="primary">Register</button>
+      </p>
+    </form>
+  </mat-card>
+</div>
